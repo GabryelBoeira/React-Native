@@ -7,7 +7,9 @@ class App extends Component{
     
     return (
       <View>
-        <Text style={{color: '#fff', fontSize: 25, margin: 15}}>Hello World!</Text>       
+        <Text style={{color: '#fff', fontSize: 25, margin: 15}}> 
+          Hello World!
+        </Text>       
         <Imagem imagem={imagem}/>
       </View>
     );
