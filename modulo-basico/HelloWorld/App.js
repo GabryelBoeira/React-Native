@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 class App extends Component{
 
@@ -20,15 +20,29 @@ class App extends Component{
 
   render(){
     return (
-      <View>
-        <Button  title="Entrar" onPress={() => this.entrar('Gabryel J Boeira')} />
-        <Text style={{color: '#efc123', fontSize: 25, margin: 15, textAlign: 'center'}}> 
-          {this.state.nome}
-        </Text>       
+      <View style={styles.styleView}>
         
+        <Text style={[styles.areaPrincipal, styles.centerText]}>  texto 1 </Text>  
+        <Text style={styles.centerText}>  texto 2 </Text>  
+        <Text> texto 3 </Text>  
+        <Text style={styles.areaPrincipal}>  texto 4 </Text>  
+
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  styleView : {
+    marginTop: 40
+  },
+  areaPrincipal : {
+    fontSize : 40,
+    color : '#f10'
+  },
+  centerText : {
+    textAlign : 'center'
+  }
+});
 
 export default App;
