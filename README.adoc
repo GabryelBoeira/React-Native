@@ -1,0 +1,10 @@
+== React
+
+Configuração e Inicialização ao desenvolvimento mobile em React native
+
+== Inicialização do Projeto no Sistema
+
+Instalação e Configuração do React native e suas dependecias 
+
+Seguir tutorial : https://reactnative.dev/docs/environment-setup
+

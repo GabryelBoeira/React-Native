@@ -1,0 +1,20 @@
+
+== Para casos de não instalação global do "react-native-cli"
+
+ovo aplicativo rodar no cmd
+[source, npm]
+----
+npx react-native init nomeDoApp
+----
+
+Inicializar um aplicativo ANDROID e o virtual device(Já configurado)
+[source, npm]
+----
+npx react-native run-android
+----
+
+Inicializar um aplicativo IOS
+[source, npm]
+----
+npx react-native run-ios
+----
