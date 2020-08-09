@@ -14,7 +14,7 @@ class App extends Component {
     this.state = {
       numero: 0,
       botao: 'INICIAR',
-      ultimo: null,
+      ultimo: 0,
     };
 
     this.timer = null;// timer do relogio
