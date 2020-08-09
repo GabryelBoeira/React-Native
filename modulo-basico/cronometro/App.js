@@ -1,114 +1,122 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
+import React, {Component}from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
-  StatusBar,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+class App extends Component {
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
+  constructor(props){
+    super(props);
+    this.state = {
+      numero: 0,
+      botao: 'INICIAR',
+      ultimo: null,
+    };
+
+    this.timer = null;// timer do relogio
+    this.iniciar = this.iniciar.bind(this);
+    this.limpar = this.limpar.bind(this);
+  }
+  
+  iniciar() {
+    if(this.timer == null) { 
+      this.timer = setInterval(() => {
+        this.setState({numero: this.state.numero+ 0.1})
+      }, 100);
+      this.setState({botao: 'Parar'});
+    } else{
+      clearInterval(this.timer);
+      this.timer = null;
+      this.setState({botao: 'Iniciar'});
+    }  
+  }
+  
+  parar() {
+  
+  }
+
+  limpar(){
+    clearInterval(this.timer);
+    this.timer = null;
+    this.setState({
+      ultimo: this.state.numero,
+      botao: 'Iniciar',
+      numero: 0,
+    });
+  }
+  
+  render() {
+    return (
+      <View style={styles.container}>
+        <Image 
+          source={require('./src/cronometro.png')}
+          style={styles.chronometer}  
+        />
+        <Text style={styles.timer}>{this.state.numero.toFixed(1)}</Text>
+        <View style={styles.btnView}>
+          
+          <TouchableOpacity style={styles.button} onPress={this.iniciar}>
+            <Text style={styles.btnText}>{this.state.botao}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button} onPress={this.limpar}>
+            <Text style={styles.btnText}>Limpar</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.viewLast}>
+         <Text style={styles.textLast}>
+          {this.state.ultimo > 0 ? `Último Tempo: ${this.state.ultimo.toFixed(2)}s`: ''}
+          </Text>
+        </View>
+      </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#00aeef',
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  timer: {
+    marginTop: -160,
+    color: '#fff',
+    fontSize: 60,
+    fontWeight: 'bold',
+  },  
+  button: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    height: 40,
+    margin: 17,
+    borderRadius: 9,
   },
-  body: {
-    backgroundColor: Colors.white,
+  btnText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#00aeef'
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  btnView: {
+    flexDirection: 'row',
+    marginTop: 70, 
+    height: 40,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
+  viewLast: {
+    marginTop: 40,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+  textLast: {
+    fontSize: 25,
+    fontStyle: 'italic',
+    color: '#FFF'
+  }
 });
 
 export default App;
