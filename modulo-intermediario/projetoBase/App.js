@@ -1,50 +1,52 @@
-import React, {Component} from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import React, { Component } from 'react'
+import { Text, StyleSheet, View, FlatList} from 'react-native'
 
-class App extends Component {
+export default class App extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {  
+      list: require('./src/pessoas.json'),
+    }
+  }
+
   render() {
     return (
-      <View style={styles.conteiner}>
-        <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} horizontal={true}>  
-          <View style={styles.viewBox1}></View>
-          <View style={styles.viewBox2}></View>
-          <View style={styles.viewBox3}></View>
-          <View style={styles.viewBox4}></View>
-        </ScrollView>
+      <View style={styles.container}>
+        <FlatList 
+          data={this.state.list}
+          keyExtractor={(item) => item.cpf}
+          renderItem={({item}) => <Person data={item} />}
+          showsVerticalScrollIndicator={false}
+        />
       </View>
     );
   }
 }
+
+class Person extends Component {
+  render(){ 
+    return(
+      <View style={styles.viewPerson}>
+        <Text style={styles.textPerson}> Nome: {this.props.data.nome}</Text>
+        <Text style={styles.textPerson}> Idade: {this.props.data.idade}</Text>
+        <Text style={styles.textPerson}> E-mail: {this.props.data.email}</Text>
+      </View>
+    );
+  }
+}
+
 const styles = StyleSheet.create({
-  conteiner: {
+  container: {
     flex: 1,
   },
-  viewBox1: {
-    backgroundColor: 'red',
-    height: 250,
-    width: 150,
+  viewPerson: {
+    backgroundColor: '#222',
+    height: 85,
+    marginBottom: 5
   },
-  viewBox2: {
-    backgroundColor: 'green',
-    height: 250,
-    width: 150,
-  },
-  viewBox3: {
-    backgroundColor: 'yellow',
-    height: 250,
-    width: 150,
-  },
-  viewBox4: {
-    backgroundColor: 'blue',
-    height: 250,
-    width: 150,
-  },
+  textPerson: {
+    color: '#fff',
+    fontSize: 20,
+  }
 });
-
-export default App;
