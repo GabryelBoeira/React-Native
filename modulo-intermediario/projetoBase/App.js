@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, FlatList} from 'react-native'
-import {Person} from './src/Person/PersonComponent'
+import Person from './src/Person/PersonComponent'
 
 export default class App extends Component {
   
