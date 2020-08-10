@@ -11,3 +11,7 @@ Seguir tutorial : https://reactnative.dev/docs/environment-setup
 == Modulo Básico
 
 Estrutura, criação de compomentes, grupo de estilos, trabalhando com PROPS, trabalhando com botões, recebendo dados entre outros conteúdos. 
+
+== Modulo Intermediário
+
+ScrollView, FlatList, separação de componentes, Picker, Slider, aplicando modais, switch
