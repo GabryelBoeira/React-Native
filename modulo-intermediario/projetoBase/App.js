@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View} from 'react-native'
-import Slider from '@react-native-community/slider'
+import { Text, StyleSheet, View, Switch} from 'react-native'
 
 export default class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      valor: 50,
+      status: false,
     };
 
   }
@@ -14,17 +13,14 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Slider
-          minimumValue={0}
-          maximumValue={100}
-          onValueChange={valor => this.setState({valor})}
-          value={this.state.valor}
-          minimumTrackTintColor="#00FF0F"
-          maximumTrackTintColor="#ff0f00"
-          onMagicTap={true}
+        <Switch
+          value={this.state.status}
+          onValueChange={status => this.setState({status})}
+          thumbColor="#0fff"
         />
-        <Text style={styles.text}> 
-          {this.state.valor.toFixed(0)}
+        <Text style={styles.text}>
+          { this.state.status ? "Ativo": "Inativo"}
+          thum 
         </Text>
       </View>
     );
