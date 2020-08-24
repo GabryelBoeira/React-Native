@@ -1,114 +1,91 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, {Component} from 'react';
+import {TextInput, StyleSheet, View, Text, Switch} from 'react-native';
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nome: '',
+      idade: '',
+      sexo: '',
+      limite: '',
+      isEstudande: false,
+    };
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+    this._isValid = this._isValid.bind(this);
+  }
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+  _isValid() {
+    for (let prop in this.state) {
+      if (obj.hasOwnProperty(prop)) alert('Campos não preenchidos!');
+      return false;
+    }
+    return true;
+  }
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>Cadastro Bancario no React Bank of America</Text>
+        <View style={styles.viewColumn}>
+          <Text style={styles.text}>Nome: </Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(nome) => this.setState({nome})}
+            value={this.state.nome}
+          />
+        </View>
+        <View style={styles.viewColumn}>
+          <Text style={styles.text}>Idade:</Text>
+          <TextInput
+            keyboardType={'number-pad'}
+            style={styles.input}
+            onChangeText={(idade) => this.setState({idade})}
+            value={this.state.idade}
+          />
+        </View>
+        <View style={styles.viewRow}>
+            <Text style={styles.text}>Estudante: </Text>
+            <Switch
+                value={this.state.isEstudande}
+                onValueChange={isEstudande => this.setState({isEstudande})}
+            />
+        </View>
+      </View>
+    );
+  }
+}
 
 export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  input: {
+    height: 40,
+    backgroundColor: '#FFF',
+    borderWidth: 1,
+    borderColor: '#E3E3E3',
+    borderRadius: 6,
+  },
+  viewColumn: {
+    marginLeft: 15,
+    marginRight: 15,
+    margin: 5,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+  },
+  viewRow: {
+    marginLeft: 15,
+    marginRight: 15,
+    margin: 5,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  text: {
+    marginBottom: 5,
+    fontSize: 15,
+  },
+});
