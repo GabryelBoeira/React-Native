@@ -15,3 +15,7 @@ Estrutura, criação de compomentes, grupo de estilos, trabalhando com PROPS, tr
 == Modulo Intermediário
 
 ScrollView, FlatList, separação de componentes, Picker, Slider, aplicando modais, switch
+
+== Modulo Avançado
+
+Requisições Http, utilizando APIs, Axios
