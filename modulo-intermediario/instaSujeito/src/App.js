@@ -11,19 +11,19 @@ export default class App extends Component {
         {
           id: '1', 
           nome: 'Gabryel Boeira', 
-          descricao: 'Mais um dia de muitos bugs :)', 
-          imgperfil: 'https://sujeitoprogramador.com/instareact/fotoPerfil1.png', 
-          imgPublicacao: 'https://sujeitoprogramador.com/instareact/foto1.png',  
-          likeada: false, 
-          likers: 0
+          descricao: 'Isso sim é ser raiz!!!!!', 
+          imgperfil: 'https://avatars0.githubusercontent.com/u/33075550?s=460&u=2266b03bfab61e18dad8b59f1299d495846c2e24&v=4', 
+          imgPublicacao: 'https://sujeitoprogramador.com/instareact/foto2.png', 
+          isLike: false, 
+          likers: 5
          },
         {
           id: '2', 
           nome: 'Matheus', 
-          descricao: 'Isso sim é ser raiz!!!!!', 
+          descricao: 'Primeiro dia de Trabalho :)', 
           imgperfil: 'https://sujeitoprogramador.com/instareact/fotoPerfil2.png', 
-          imgPublicacao: 'https://sujeitoprogramador.com/instareact/foto2.png', 
-          likeada: false, 
+          imgPublicacao: 'https://sujeitoprogramador.com/instareact/foto5.png', 
+          isLike: false, 
           likers: 0
         },
         {
@@ -32,25 +32,25 @@ export default class App extends Component {
           descricao: 'Bora trabalhar Haha', 
           imgperfil: 'https://sujeitoprogramador.com/instareact/fotoPerfil3.png', 
           imgPublicacao: 'https://sujeitoprogramador.com/instareact/foto3.png',  
-          likeada: false, 
+          isLike: false, 
           likers: 3
         },
         {
           id: '4', 
-          nome: 'Maria Antonieta', 
-          descricao: 'Isso sim que é TI!', 
-          imgperfil: 'https://sujeitoprogramador.com/instareact/fotoPerfil1.png', 
-          imgPublicacao: 'https://sujeitoprogramador.com/instareact/foto4.png', 
-          likeada: false, 
+          nome: 'Mario', 
+          descricao: 'Isso sim que é corrida!', 
+          imgperfil: 'https://assets.papelpop.com/wp-content/uploads/2017/09/mario.jpg', 
+          imgPublicacao: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSUNfIxBwA7dXh3HCJjcr2MVxEOHPiJNkBghw&usqp=CAU', 
+          isLike: false, 
           likers: 1
         },
         {
           id: '5', 
-          nome: 'Patricia', 
-          descricao: 'Boa tarde galera do insta...', 
-          imgperfil: 'https://sujeitoprogramador.com/instareact/fotoPerfil2.png', 
-          imgPublicacao: 'https://sujeitoprogramador.com/instareact/foto5.png',
-          likeada: false, 
+          nome: 'Luigi', 
+          descricao: 'Nave pronta para o estouro', 
+          imgperfil: 'https://b7.pngbarn.com/png/330/7/new-super-mario-bros-wii-mario-luigi-superstar-saga-mario-bros-png-clip-art.png', 
+          imgPublicacao: 'https://img.ibxk.com.br/2019/10/20/20222412521081.jpg',
+          isLike: false, 
           likers: 32
         }
       ]
@@ -67,17 +67,17 @@ export default class App extends Component {
               />
           </Pressable>
           <Pressable>
-          <Image
-            source={require('../assets/img/send.png')}
-            style={styles.send}
-          />
+            <Image
+              source={require('../assets/img/send.png')}
+              style={styles.send}
+            />
           </Pressable>
         </View>
         <FlatList
           showsHorizontalScrollIndicator={false}
           data={this.state.feed}
           keyExtractor={(item) => `${item.id}`}
-          renderItem={({item}) => <Lista data={item} />}
+          renderItem={({item}) => <Lista feed={item} />}
 
         />
       </View>
