@@ -1,87 +1,48 @@
-import React, { Component } from 'react'
-import { Pressable, Text, StyleSheet, View, TextInput, Keyboard} from 'react-native'
-import AsyncStorage from '@react-native-community/async-storage'
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View, Button, Modal } from 'react-native';
+import Entrar from './component/Entrar.js'
 
 export default class App extends Component {
+
   constructor(props){
     super(props);
-    this.state = {
-      input: '',
-      nome: ''
-    };
+    this.state={
+      modalVisible:false
+     };
 
-    this.gravaNome = this.gravaNome.bind(this)
+    this.entrar = this.entrar.bind(this);
+    this.sair = this.sair.bind(this);
   }
-
-  async componentDidMount() {
-    await AsyncStorage.getItem('nome').then(nome => {
-      this.setState({nome})
-    })
+  entrar(){
+    this.setState({modalVisible: true});
   }
-
-  async componentDidUpdate(_, prevState){
-    let nome = this.state.nome
-    if(prevState !== nome){
-      await AsyncStorage.setItem('nome', nome)
-    }
-  }
-
-  gravaNome() {
-    this.setState({
-      nome: this.state.input
-    })
-    alert('Salvo com Sucesso')
-    Keyboard.dismiss()
+  sair(visible){
+    this.setState({modalVisible: visible});
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.inputView}>
-          <TextInput 
-            style={styles.inputText}
-            value={this.state.input}
-            onChangeText={input => this.setState({input})}
-            underlineColorAndroid={"transparent"}
-            />
-          <Pressable onPress={this.gravaNome}>
-            <Text style={styles.button}> + </Text>
-          </Pressable>
-        </View>
-        <Text style={styles.nome}>{this.state.nome}</Text>
+          <Button title="Entrar" onPress={ this.entrar }/>
+
+          <Modal transparent={true} animationType="slide" visible={this.state.modalVisible}>
+            <View style={{margin:15, flex:1, alignItems:'center', justifyContent: 'center'}}>
+               <Entrar fechar={ () => this.sair(false)} />
+            </View>
+          </Modal>
+
       </View>
     );
   }
 }
 
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
-    alignItems: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#DDD',
   },
-  inputView: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  inputText: {
-    width: 340,
-    marginLeft: 10,
-    height: 40,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#000'
-  },
-  button: {
-    height: 40,
-    padding: 10,
-    marginLeft: 4,
-    color: '#fff',
-    backgroundColor: '#000',
-  },
-  nome: {
-    marginTop: 25,
-    fontSize: 30,
-    textAlign: 'center'
-  }
 });
