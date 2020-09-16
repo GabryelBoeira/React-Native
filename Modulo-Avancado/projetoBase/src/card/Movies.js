@@ -3,7 +3,8 @@ import {View, Text, StyleSheet, Image, Pressable} from 'react-native'
 
 export default class Movies extends Component{
   render(){
-    const {nome, foto} = this.props.data
+    console.log(this.props.data)
+    const {nome, foto, sinopse} = this.props.data
     return(
       <View style={styles.card}>
         <Text style={styles.title}>{nome}</Text>
@@ -12,7 +13,7 @@ export default class Movies extends Component{
           style={styles.poster}
         />
         <View style={styles.viewButton}>
-          <Pressable style={styles.button} onPress={()=> alert(nome)}>
+          <Pressable style={styles.button} onPress={()=> alert(sinopse)}>
             <Text style={styles.buttonText}>LEIA MAIS</Text>
           </Pressable>
         </View>

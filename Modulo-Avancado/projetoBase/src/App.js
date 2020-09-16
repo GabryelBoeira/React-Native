@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native'
 
-import api from './services/api'
+import api from './services/Api.js'
 import Movies from './card/Movies.js'
 
 export default class App extends Component {
@@ -12,7 +12,7 @@ export default class App extends Component {
   }
 
   async componentDidMount(){
-    const response = await api.get('/r-api/?api=movies')
+    const response = await api.get('/r-api/?api=filmes')
     this.setState({
       movies: response.data,
       loading: false
@@ -32,8 +32,7 @@ export default class App extends Component {
           <FlatList
             data={this.state.movies}
             keyExtractor={item => `${item.id}`}
-            renderItem={ ({item}) => <Movies data={item} /> }
-            
+            renderItem={ ({item}) => <Movies data={item} /> }            
           />  
         </View>
       )
