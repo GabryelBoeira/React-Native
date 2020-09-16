@@ -3,7 +3,6 @@ import {View, Text, StyleSheet, Image, Pressable} from 'react-native'
 
 export default class Movies extends Component{
   render(){
-    console.log(this.props.data)
     const {nome, foto, sinopse} = this.props.data
     return(
       <View style={styles.card}>
