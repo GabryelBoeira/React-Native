@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Text, StyleSheet, View, TextInput, Pressable} from 'react-native' 
+import {Text, StyleSheet, View, TextInput, Pressable, Keyboard} from 'react-native' 
 import api from '../service/api'
 
 export default class converterValues extends Component {
@@ -9,9 +9,16 @@ export default class converterValues extends Component {
     converterValue: 0
   }
   
-  converter = () => {
-    //convert?q=USD_BRL&compact=ultra&apiKey=03d5689605dc0833ec84
-    const response = api.get()
+  converter = async (coinA, coinB) => {
+    
+    let from_to = `${coinA}_${coinB}`
+    const response = await api.get(`convert?q=${from_to}&compact=ultra&apiKey=03d5689605dc0833ec84`)
+    
+    let quote = response.data[from_to]
+    let totalQuote = (parseFloat(quote) * parseFloat(this.state.coinBValue))
+    
+    this.setState({converterValue: totalQuote.toFixed(2)})
+    Keyboard.dismiss()
   }
 
   render() {
@@ -29,11 +36,11 @@ export default class converterValues extends Component {
           keyboardType={'numeric'}
         />
 
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={() => this.converter(coinA, coinB)}>
           <Text style={styles.buttonText}> Converter </Text>
         </Pressable>
 
-        <Text style={styles.result}>{this.state.converterValue} </Text>
+        <Text style={styles.result}>{this.state.converterValue === 0? '': this.state.converterValue} </Text>
       </View>      
     )
   }
