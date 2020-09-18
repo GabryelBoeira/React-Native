@@ -19,3 +19,7 @@ ScrollView, FlatList, separação de componentes, Picker, Slider, aplicando moda
 == Modulo Avançado
 
 Requisições Http, utilizando APIs, Axios
+
+== Modulo Animações
+
+Abrendendo o básico, Animações em Sequencia + Parapela, Animações em Loop, Disparando Animações, Usando Interpolações
