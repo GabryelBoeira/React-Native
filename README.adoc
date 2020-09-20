@@ -22,4 +22,4 @@ Requisições Http, utilizando APIs, Axios
 
 == Modulo Animações
 
-Abrendendo o básico, Animações em Sequencia + Parapela, Animações em Loop, Disparando Animações, Usando Interpolações
+Abrendendo o básico, Animações em Sequencial + Paralela, Animações em Loop, Disparando Animações, Usando Interpolações
