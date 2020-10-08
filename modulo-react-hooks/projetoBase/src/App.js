@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import {Text, StyleSheet, View, Pressable, TextInput} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -10,6 +10,10 @@ export default function App() {
     setNome(input);
     setInput('');
   }
+
+  const nomeLength = useMemo(() => {
+    return nome.length;
+  }, [nome]);
 
   //didAmount
   useEffect(() => {
@@ -42,6 +46,7 @@ export default function App() {
         <Text style={styles.buttonText}> Alterar Nome</Text>
       </Pressable>
       <Text style={styles.text}> {nome} </Text>
+      <Text style={styles.text}> Tem {nomeLength} Letras</Text>
     </View>
   );
 }
