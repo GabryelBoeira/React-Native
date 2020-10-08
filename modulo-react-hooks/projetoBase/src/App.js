@@ -1,14 +1,33 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text, StyleSheet, View, Pressable, TextInput} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default function App() {
-  const [nome, setNome] = useState('Lucas');
+  const [nome, setNome] = useState('');
   const [input, setInput] = useState('');
 
   function alterarNome() {
     setNome(input);
     setInput('');
   }
+
+  //didAmount
+  useEffect(() => {
+    async function getStorage() {
+      let nomeSalvo = await AsyncStorage.setItem('nome', nome);
+      if (nomeSalvo) setNome(nomeSalvo);
+    }
+
+    getStorage();
+  }, []);
+
+  //didUpdate
+  useEffect(() => {
+    async function setStorage() {
+      await AsyncStorage.setItem('nome', nome);
+    }
+    setStorage();
+  }, [nome]);
 
   return (
     <View style={styles.container}>
