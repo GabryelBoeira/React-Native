@@ -23,3 +23,13 @@ Requisições Http, utilizando APIs, Axios
 == Modulo Animações
 
 Abrendendo o básico, Animações em Sequencial + Paralela, Animações em Loop, Disparando Animações, Usando Interpolações
+
+
+== Modulo React Hooks
+
+O que é React Hooks, API useState, API useEffect, API useMemo, API useRef
+
+
+== Modulo React Redux
+
+O que é React Redux, utilização de Actions, utilização de reducers, implementação do Redux 
