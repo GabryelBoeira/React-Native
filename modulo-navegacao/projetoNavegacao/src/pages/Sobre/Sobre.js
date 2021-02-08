@@ -25,7 +25,6 @@ export default function Sobre(props) {
         title={'Contato'}
         onPress={() => navigation.navigate('Contato')}
       />
-
       <Button
         style={styles.padding}
         title={'Voltar para Home'}

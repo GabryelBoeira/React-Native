@@ -13,7 +13,7 @@ export default function Contato(props) {
       </View>
       <Button title={'Voltar para Sobre'} onPress={() => navigation.goBack()} />
       <Button
-        title={'Voltar para Sobre'}
+        title={'Voltar para Home'}
         onPress={() => navigation.dispatch(navigation.popToTop())}
       />
     </>
