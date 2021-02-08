@@ -1,42 +1,40 @@
-import React, {Component} from 'react';
-import {Text, StyleSheet, View, Pressable} from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Feather from 'react-native-vector-icons/Feather';
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-export default class App extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text> Utilizando Icons </Text>
-        <FontAwesome name={`home`} size={30} color={`#000`} />
-        <Feather name={`gift`} size={30} color={`#45E098`} />
+//Import Page Navigation
+import Home from './src/pages/Home/Home';
+import Sobre from './src/pages/Sobre/Sobre';
 
-        <Pressable style={styles.youTubePressable}>
-          <Feather name={`youtube`} size={30} color={`#FFF`} />
-          <Text style={styles.textPressable}>Acessar Canal</Text>
-        </Pressable>
-      </View>
-    );
-  }
+const Stack = createStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName={'Home'}>
+        <Stack.Screen
+          name={'Home'}
+          component={Home}
+          options={{
+            title: 'Inicio',
+            headerStyle: {
+              backgroundColor: '#000',
+            },
+            headerTintColor: '#FFF',
+          }}
+        />
+        <Stack.Screen
+          name={'Sobre'}
+          component={Sobre}
+          options={{
+            title: 'Inicio',
+            headerStyle: {
+              backgroundColor: '#000',
+            },
+            headerTintColor: '#FFF',
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignContent: `center`,
-    alignItems: `center`,
-    justifyContent: `center`,
-  },
-  youTubePressable: {
-    flexDirection: `row`,
-    justifyContent: `center`,
-    alignItems: `center`,
-    padding: 5,
-    backgroundColor: 'red',
-    borderRadius: 5,
-  },
-  textPressable: {
-    paddingLeft: 10,
-    color: '#FFF',
-  },
-});
