@@ -29,6 +29,10 @@ Abrendendo o básico, Animações em Sequencial + Paralela, Animações em Loop,
 
 O que é React Hooks, API useState, API useEffect, API useMemo, API useRef
 
+== Modulo Navigation 
+
+utilização da extensão React Navigation, utilização de 
+navegação, stack, tabs, biblioteca de icones para personalizar a paginação e utilização e a personalização de drawer
 
 == Modulo React Redux
 

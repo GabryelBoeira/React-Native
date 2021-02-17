@@ -1,6 +1,7 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, StackActions} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 //Import Page Navigation
@@ -9,6 +10,7 @@ import Sobre from './src/pages/Sobre/Sobre';
 import Contato from './src/pages/Contato/Contato';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const icons = {
   Home: {
@@ -22,28 +24,40 @@ const icons = {
   },
 };
 
+function Tabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={({route}) => ({
+        tabBarIcon: ({color, size}) => {
+          const {name} = icons[route.name];
+          return <Ionicons name={name} color={color} size={size} />;
+        },
+      })}
+      tabBarOptions={{
+        style: {
+          backgroundColor: 'rgba(000,000,000, 0.7)',
+        },
+        activeTintColor: 'rgba(000,000,000, 0.7)',
+        inactiveBackgroundColor: 'rgba(000,000,000, 0.7)',
+        activeBackgroundColor: '#FFF',
+      }}>
+      <Tab.Screen name={'Home'} component={Home} />
+      <Tab.Screen name={'Sobre'} component={Sobre} />
+    </Tab.Navigator>
+  );
+}
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({route}) => ({
-          tabBarIcon: ({color, size}) => {
-            const {name} = icons[route.name];
-            return <Ionicons name={name} color={color} size={size} />;
-          },
-        })}
-        tabBarOptions={{
-          style: {
-            backgroundColor: 'rgba(000,000,000, 0.7)',
-          },
-          activeTintColor: 'rgba(000,000,000, 0.7)',
-          inactiveBackgroundColor: 'rgba(000,000,000, 0.7)',
-          activeBackgroundColor: '#FFF',
-        }}>
-        <Tab.Screen name={'Home'} component={Home} />
-        <Tab.Screen name={'Sobre'} component={Sobre} />
-        <Tab.Screen name={'Contato'} component={Contato} />
-      </Tab.Navigator>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Tabs}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen name={'Contato'} component={Contato} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
